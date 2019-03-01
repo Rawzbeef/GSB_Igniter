@@ -2,10 +2,10 @@
 class Connexion extends CI_Controller {
     public function index()
 	{   
-        $GLOBALS['titre'] = "Connexion";
+        $data['titre'] = "Connexion";
 
-        $this->load->view('v_head');
-        $this->load->view('v_menu');
+        $this->load->view('v_head', $data);
+        //$this->load->view('v_menu', $data); //pour tester le menu, a supprimer quand terminé
         $this->load->view('v_connexion');
 	}
 }
