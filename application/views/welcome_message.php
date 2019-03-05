@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+header('Location: http://127.0.0.1/GSB/index.php/Connexion/index/'); 
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
