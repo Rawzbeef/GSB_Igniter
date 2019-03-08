@@ -37,3 +37,9 @@ nav li a:hover {
     background-color: #4CAF50;
     color: white;
 }
+
+.section {
+    display: block;
+    position: relative;
+    margin-left: 20%;
+}

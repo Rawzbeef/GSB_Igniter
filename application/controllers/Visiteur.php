@@ -4,6 +4,8 @@ class Visiteur extends CI_Controller {
 	{   
         $this->load->database();
 
+        $this->load->helper('form');
+
         $data['titre'] = "Visiteur";
 
         $this->load->view('v_head', $data);
