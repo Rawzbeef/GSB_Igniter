@@ -31,6 +31,35 @@ class Bdd extends CI_Model {
         return $visiteur;
     }
 
+    public function getMedicaments() {
+        $query = $this->db->query('SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL FROM medicament');
+        foreach ($query->result() as $row) {
+            $medicaments[] = $row->MED_NOMCOMMERCIAL;
+        }
+        return $medicaments;
+    }
+
+    public function getMedicamentsIDs() {
+        $query = $this->db->query('SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL FROM medicament');
+        foreach ($query->result() as $row) {
+            $mId[] = $row->MED_DEPOTLEGAL;
+        }
+        return $mId;
+    }
+
+    public function getInfoMedicament($mId) {
+        $query = $this->db->query("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_LIBELLE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC FROM medicament M, famille F WHERE M.FAM_CODE = F.FAM_CODE AND MED_DEPOTLEGAL = '$mId';");
+        foreach ($query->result() as $row) {
+            $medicament[] = $row->MED_DEPOTLEGAL;
+            $medicament[] = $row->MED_NOMCOMMERCIAL;
+            $medicament[] = $row->FAM_LIBELLE;
+            $medicament[] = $row->MED_COMPOSITION;
+            $medicament[] = $row->MED_EFFETS;
+            $medicament[] = $row->MED_CONTREINDIC;
+        }
+        return $medicament;
+    }
+
 }
 
 
