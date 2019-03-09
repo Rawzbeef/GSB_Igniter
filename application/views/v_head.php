@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/GSB/assets/style.css">
 </head>
 <body>
+    <div class='nav'></div>
     <header>
         <img src="/GSB/assets/images/gsb.jpg" alt="GSB">
     </header>
