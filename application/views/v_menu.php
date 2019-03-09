@@ -15,11 +15,20 @@
         else {
             echo "<li><a href='/GSB/index.php/Visiteur/index'>Visiteur</a></li>";
         }
+
+        //Médicaments
+        if($titre == "Medicament") {
+            echo "<li><a class='active' href='/GSB/index.php/Medicament/index'>Médicaments</a></li>";
+        }
+        else {
+            echo "<li><a href='/GSB/index.php/Medicament/index'>Médicaments</a></li>";
+        }
     ?></ul>
 </nav>
 
 <?php
 /* ici le menu sans active pour mieux copier-coller
         echo "<li><a href='/GSB/index.php/Connexion/index'>Connexion</a></li>";
-        echo "<li><a href='/GSB/index.php/Visiteur/index'>Visiteur</a></li>";
+        echo "<li><a href='/GSB/index.php/Visiteur/index'>Visiteurs</a></li>";
+        echo "<li><a href='/GSB/index.php/Medicament/index'>Médicaments</a></li>";
 */
