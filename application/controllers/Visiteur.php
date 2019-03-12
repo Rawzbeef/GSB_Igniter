@@ -1,9 +1,8 @@
 <?php
 class Visiteur extends CI_Controller {
     public function index() {   
-        $this->load->database();
         
-        $this->load->library('table');
+        $this->load->database();
 
         $this->load->helper('form');
 

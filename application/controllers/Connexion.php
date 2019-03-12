@@ -1,6 +1,13 @@
 <?php
 class Connexion extends CI_Controller {
     public function index() {   
+
+        $this->load->database();
+
+        $this->load->helper('form');
+
+        $this->load->model('bdd');
+        
         $data['titre'] = "Connexion";
 
         $this->load->view('v_head', $data);

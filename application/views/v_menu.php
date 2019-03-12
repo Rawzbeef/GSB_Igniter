@@ -16,6 +16,14 @@
             echo "<li><a href='/GSB/index.php/Visiteur/index'>Visiteur</a></li>";
         }
 
+        //Praticiens
+        if($titre == "Praticien") {
+            echo "<li><a class='active' href='/GSB/index.php/Praticien/index'>Praticien</a></li>";
+        }
+        else {
+            echo "<li><a href='/GSB/index.php/Praticien/index'>Praticien</a></li>";
+        }
+
         //Médicaments
         if($titre == "Medicament") {
             echo "<li><a class='active' href='/GSB/index.php/Medicament/index'>Médicaments</a></li>";

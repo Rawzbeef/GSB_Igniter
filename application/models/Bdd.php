@@ -31,6 +31,70 @@ class Bdd extends CI_Model {
         return $visiteur;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getPraticiens() {
+        $query = $this->db->query('SELECT PRA_NUM, PRA_NOM FROM praticien');
+        foreach ($query->result() as $row) {
+            $praticiens[] = $row->PRA_NOM;
+        }
+        return $praticiens;
+    }
+
+    public function getPraticiensIDs() {
+        $query = $this->db->query('SELECT PRA_NUM, PRA_NOM FROM praticien');
+        foreach ($query->result() as $row) {
+            $pId[] = $row->PRA_NUM;
+        }
+        return $pId;
+    }
+
+    public function getInfoPraticien($pId) {
+        $query = $this->db->query("SELECT PRA_NOM, PRA_PRENOM, PRA_ADRESSE, PRA_CP, PRA_VILLE, PRA_COEFNOTORIETE, TYP_LIBELLE FROM praticien P, engine_praticien E WHERE E.TYP_CODE = P.TYP_CODE AND PRA_NUM = '$pId';");
+        foreach ($query->result() as $row) {
+            $praticien[] = $row->PRA_NOM;
+            $praticien[] = $row->PRA_PRENOM;
+            $praticien[] = $row->PRA_ADRESSE;
+            $praticien[] = $row->PRA_CP;
+            $praticien[] = $row->PRA_VILLE;
+            $praticien[] = $row->PRA_COEFNOTORIETE;
+            $praticien[] = $row->TYP_LIBELLE;
+        }
+        return $praticien;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getMedicaments() {
         $query = $this->db->query('SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL FROM medicament');
         foreach ($query->result() as $row) {
