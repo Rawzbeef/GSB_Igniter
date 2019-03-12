@@ -158,8 +158,7 @@ create table `PRESCRIRE`(`MED_DEPOTLEGAL` VARCHAR(10) not null,`TIN_CODE` VARCHA
 create table `PRESENTATION`(`PRE_CODE` VARCHAR(2) not null,`PRE_LIBELLE` VARCHAR(20),primary key(`PRE_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 create table `RAPPORT_VISITE`(`VIS_MATRICULE` VARCHAR(10) not null,`RAP_NUM` INT not null,`PRA_NUM` SMALLINT not null,`RAP_DATE` DATETIME,`RAP_BILAN` VARCHAR(255),`RAP_MOTIF` VARCHAR(255),primary key(`VIS_MATRICULE`,`RAP_NUM`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a131',3,23,'2002-4-18','Médecin curieux, à recontacer en décembre pour réunion','Actualisation annuelle');
-insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a131',7,41,'2003-3-23','RAS
-Changement de tel : 05 89 89 89 89','Rapport Annuel');
+insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a131',7,41,'2003-3-23','RAS Changement de tel : 05 89 89 89 89','Rapport Annuel');
 insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a17',4,4,'2003-5-21','Changement de direction, redéfinition de la politique médicamenteuse, recours au générique','Baisse activité');
 create table `REALISER`(`AC_NUM` INT not null,`VIS_MATRICULE` VARCHAR(10) not null,`REA_MTTFRAIS` FLOAT,primary key(`AC_NUM`,`VIS_MATRICULE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 create table `REGION`(`REG_CODE` VARCHAR(2) not null,`SEC_CODE` VARCHAR(1) not null,`REG_NOM` VARCHAR(50),primary key(`REG_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
@@ -335,7 +334,7 @@ insert into `ENGINE_PRATICIEN`(`TYP_CODE`,`TYP_LIBELLE`,`TYP_LIEU`) values('MV',
 insert into `ENGINE_PRATICIEN`(`TYP_CODE`,`TYP_LIBELLE`,`TYP_LIEU`) values('PH','Pharmacien Hospitalier','Hopital ou clinique');
 insert into `ENGINE_PRATICIEN`(`TYP_CODE`,`TYP_LIBELLE`,`TYP_LIEU`) values('PO','Pharmacien Officine','Pharmacie');
 insert into `ENGINE_PRATICIEN`(`TYP_CODE`,`TYP_LIBELLE`,`TYP_LIEU`) values('PS','Personnel de santé','Centre paramédical');
-create table `VISITEUR`(`VIS_MATRICULE` VARCHAR(10) not null,`VIS_NOM` VARCHAR(25),`Vis_PRENOM` VARCHAR(50),`VIS_ADRESSE` VARCHAR(50),`VIS_CP` VARCHAR(5),`VIS_VILLE` VARCHAR(30),`VIS_DATEEMBAUCHE` DATETIME,`SEC_CODE` VARCHAR(1),`LAB_CODE` VARCHAR(2) not null,primary key(`VIS_MATRICULE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
+create table `VISITEUR`(`VIS_MATRICULE` VARCHAR(10) not null,`VIS_NOM` VARCHAR(25),`Vis_PRENOM` VARCHAR(50),`VIS_ADRESSE` VARCHAR(50),`VIS_CP` VARCHAR(5),`VIS_VILLE` VARCHAR(30),`VIS_DATEEMBAUCHE` DATE,`SEC_CODE` VARCHAR(1),`LAB_CODE` VARCHAR(2) not null,primary key(`VIS_MATRICULE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 insert into `VISITEUR`(`VIS_MATRICULE`,`VIS_NOM`,`Vis_PRENOM`,`VIS_ADRESSE`,`VIS_CP`,`VIS_VILLE`,`VIS_DATEEMBAUCHE`,`SEC_CODE`,`LAB_CODE`) values('a131','Villechalane','Louis','8 cours Lafontaine','29000','BREST','1992-12-11',null,'SW');
 insert into `VISITEUR`(`VIS_MATRICULE`,`VIS_NOM`,`Vis_PRENOM`,`VIS_ADRESSE`,`VIS_CP`,`VIS_VILLE`,`VIS_DATEEMBAUCHE`,`SEC_CODE`,`LAB_CODE`) values('a17','Andre','David','1 r Aimon de Chissée','38100','GRENOBLE','1991-8-26',null,'GY');
 insert into `VISITEUR`(`VIS_MATRICULE`,`VIS_NOM`,`Vis_PRENOM`,`VIS_ADRESSE`,`VIS_CP`,`VIS_VILLE`,`VIS_DATEEMBAUCHE`,`SEC_CODE`,`LAB_CODE`) values('a55','Bedos','Christian','1 r Bénédictins','65000','TARBES','1987-7-17',null,'GY');

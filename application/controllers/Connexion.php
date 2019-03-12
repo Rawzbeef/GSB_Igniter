@@ -14,4 +14,18 @@ class Connexion extends CI_Controller {
         $this->load->view('v_menu', $data); //pour faciliter l'accès en attendant que ce soit codé, a supprimer quand terminé
         $this->load->view('v_connexion');
     }
+
+
+    public function login() {
+        $this->load->model('bdd');
+        $login = validerConnexion($this->input->post('login'), $this->input->post('mdp'));
+        if(isset($login)) {
+        $this->index();
+        $_SESSION['login'] = $login;
+        }
+        else{
+            $this->index();
+            $data['error'] = 'Erreur de connexion';
+        }
+    }
 }
