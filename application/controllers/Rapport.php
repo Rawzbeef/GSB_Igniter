@@ -5,7 +5,10 @@ class Rapport extends CI_Controller {
 
         $this->load->view('v_head', $data);
         $this->load->view('v_menu', $data);
-        $this->load->view('v_rapport');
+
+        $data['rapports'] = $this->bdd->getRapports($_SESSION['login']);
+
+        $this->load->view('v_rapport', $data);
 
     }
 }

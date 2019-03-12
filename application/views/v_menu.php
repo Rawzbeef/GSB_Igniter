@@ -33,10 +33,11 @@
         }
     ?></ul>
 </nav>
-
+<div style='margin-left:20%'>
 <?php
 /* ici le menu sans active pour mieux copier-coller
         echo "<li><a href='/GSB/index.php/Connexion/index'>Connexion</a></li>";
         echo "<li><a href='/GSB/index.php/Visiteur/index'>Visiteurs</a></li>";
         echo "<li><a href='/GSB/index.php/Medicament/index'>Médicaments</a></li>";
 */
+

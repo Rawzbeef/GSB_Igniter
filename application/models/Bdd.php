@@ -104,12 +104,21 @@ class Bdd extends CI_Model {
 
         public function validerConnexion($login, $mdp) {
             $id = null;
-            $query = $this->db->query("SELECT VIS_MATRICULE FROM visiteur V WHERE $login = VIS_MATRICULE AND $mdp = VIS_DATEEMBAUCHE");
+            $query = $this->db->query("SELECT VIS_MATRICULE FROM visiteur V WHERE VIS_NOM = '$login' AND VIS_DATEEMBAUCHE = '$mdp'");
             $row = $query->row();
             if($query->num_rows() > 0) {
                 $id = $row->VIS_MATRICULE;
             }
             return $id;
+        }
+
+        //
+        public function getRapports($vId) {
+            $query = $this->db->query("SELECT RAP_NUM FROM rapport_visite WHERE VIS_MATRICULE = '$vId'");
+            foreach ($query->result() as $row) {
+                $rapports[] = $row->RAP_NUM;
+            }
+            return $rapports;
         }
 
 }

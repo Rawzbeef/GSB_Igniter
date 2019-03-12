@@ -17,8 +17,11 @@ class Connexion extends CI_Controller {
 
 
     public function login() {
+        $this->load->database();
         $this->load->model('bdd');
-        $login = validerConnexion($this->input->post('login'), $this->input->post('mdp'));
+        session_start();
+
+        $login = $this->bdd->validerConnexion($this->input->post('login'), $this->input->post('mdp'));
         if(isset($login)) {
         $this->index();
         $_SESSION['login'] = $login;
