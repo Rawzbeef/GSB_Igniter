@@ -41,11 +41,12 @@ nav li a:hover {
 }
 
 input, select {
-    padding: 5px ;
-    margin: 10px ;
+    width: 200px;
+    padding: 5px;
+    margin: 10px;
     display: block;
     position: relative;
-    width: 200px;
+    
 }
 
 th, td {
