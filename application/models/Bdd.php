@@ -121,6 +121,18 @@ class Bdd extends CI_Model {
             return $rapports;
         }
 
+        public function getInfoRapport($vId, $rapport) {
+            $query = $this->db->query("SELECT PRA_NOM, PRA_PRENOM, RAP_DATE, RAP_MOTIF, RAP_BILAN FROM rapport_visite RV, praticien, P WHERE P.PRA_NUM = RV.PRA_NUM AND VIS_MATRICULE = '$vId' AND RAP_NUM = '$rapport'");
+            foreach ($query->result() as $row) {
+                $rapport[] = $row->PRA_NOM;
+                $rapport[] = $row->PRA_PRENOM;
+                $rapport[] = $row->RAP_DATE;
+                $rapport[] = $row->RAP_MOTIF;
+                $rapport[] = $row->RAP_BILAN;
+            }
+            return $rapports;
+        }
+
 }
 
 
