@@ -1,7 +1,10 @@
 <div align="center">
 <?php
 
-    if(!isset($_SESSION['login'])){
+    if(isset($this->session->login)){
+       echo('Vous etes connecté'.$this->session->login);
+    }
+    else{
         echo form_open('index.php/Connexion/login');
         $attributes = array('placeholder'=>'login');
         echo form_input('login', '', $attributes);
@@ -9,9 +12,6 @@
         echo form_password('mdp', '', $attributes);
         echo form_submit('valider', 'Valider');
         echo form_close();
-    }
-    else{
-        echo('Vous etes connecté');
     }
 ?>
 </div>

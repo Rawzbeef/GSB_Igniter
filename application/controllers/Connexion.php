@@ -1,6 +1,6 @@
 <?php
 class Connexion extends CI_Controller {
-    public function index() {   
+    public function index() {
 
         $this->load->database();
 
@@ -11,7 +11,7 @@ class Connexion extends CI_Controller {
         $data['titre'] = "Connexion";
 
         $this->load->view('v_head', $data);
-        if(isset($_SESSION['login'])){
+        if(isset($this->session->login)){
             $this->load->view('v_menu', $data);
         }
         
@@ -20,24 +20,22 @@ class Connexion extends CI_Controller {
 
 
     public function login() {
-        if(isset($_SESSION['login'])) {
             $this->load->database();
             $this->load->model('bdd');
 
             $login = $this->bdd->validerConnexion($this->input->post('login'), $this->input->post('mdp'));
             if(isset($login)) {
-                $this->index();
-                $_SESSION['login'] = $login;
+                $this->session->set_userdata('login', $login);
+                header('Location: http://127.0.0.1/GSB/'); 
             }
             else{
                 $this->index();
                 $data['error'] = 'Erreur de connexion';
             }
-        }
     }
 
     public function logout(){
-        session_destroy();
+        $this->session->unset_userdata('login');
         $this->index();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 class Praticien extends CI_Controller {
     public function index() {   
-        if(isset($_SESSION['login'])) {
+        if(isset($this->session->login)) {
             $this->load->database();
 
             $this->load->helper('form');
@@ -26,7 +26,7 @@ class Praticien extends CI_Controller {
     }
     
     public function rechercher() {
-        if(isset($_SESSION['login'])) {
+        if(isset($this->session->login)) {
             $this->index();
             $data['praticien'] = $this->bdd->getInfoPraticien($this->input->post('praticien'));
             $this->load->view('v_chercher_praticien', $data);

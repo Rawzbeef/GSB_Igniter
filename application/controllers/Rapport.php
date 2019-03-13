@@ -1,7 +1,7 @@
 <?php 
 class Rapport extends CI_Controller {
     public function index() { 
-        if(isset($_SESSION['login'])) {
+        if(isset($this->session->login)) {
             $this->load->database();
 
             $this->load->helper('form');
@@ -14,14 +14,14 @@ class Rapport extends CI_Controller {
             $this->load->view('v_head', $data);
             $this->load->view('v_menu', $data);
 
-            $data['rapports'] = $this->bdd->getRapports($_SESSION['login']);
+            $data['rapports'] = $this->bdd->getRapports($this->session->login);
 
             $this->load->view('v_rapport', $data);
         }
     }
 
     public function afficher() {
-        if(isset($_SESSION['login'])) {
+        if(isset($this->session->login)) {
             $this->load->database();
 
             $this->load->helper('form');
@@ -29,7 +29,7 @@ class Rapport extends CI_Controller {
 
             $this->load->model('bdd');
 
-            $data['rapports'] = $this->bdd->getInfoRapport($_SESSION['login'], $this->input->post['rapport']);
+            $data['rapports'] = $this->bdd->getInfoRapport($this->session->login, $this->input->post['rapport']);
             $this->load->view('v_afficher_rapport', $data);
         }
     }

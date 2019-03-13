@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<?php session_start();?>
 <head>
     <meta charset="utf-8">
     <title><?php echo $titre;?></title>
@@ -8,7 +7,7 @@
 </head>
 <body>
     <?php 
-        if(isset($_SESSION['login'])) {
+        if(isset($this->session->login)) {
            echo "<div class='nav'></div>";  
         }
     ?>
