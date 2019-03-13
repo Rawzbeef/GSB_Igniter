@@ -11,7 +11,10 @@ class Connexion extends CI_Controller {
         $data['titre'] = "Connexion";
 
         $this->load->view('v_head', $data);
-        $this->load->view('v_menu', $data); //pour faciliter l'accès en attendant que ce soit codé, a supprimer quand terminé
+        if(isset($_SESSION['login'])){
+            $this->load->view('v_menu', $data);
+        }
+        
         $this->load->view('v_connexion');
     }
 
@@ -19,7 +22,6 @@ class Connexion extends CI_Controller {
     public function login() {
         $this->load->database();
         $this->load->model('bdd');
-        session_start();
 
         $login = $this->bdd->validerConnexion($this->input->post('login'), $this->input->post('mdp'));
         if(isset($login)) {

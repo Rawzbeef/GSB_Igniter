@@ -2,7 +2,7 @@ CREATE DATABASE GSB;
 
 USE GSB;
 
-create table `ACTIVITE_COMPL`(`AC_NUM` INT AUTO_INCREMENT not null,`AC_DATE` DATETIME,`AC_LIEU` VARCHAR(25),`AC_THEME` VARCHAR(10),`AC_MOTIF` VARCHAR(50),primary key(`AC_NUM`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
+create table `ACTIVITE_COMPL`(`AC_NUM` INT AUTO_INCREMENT not null,`AC_DATE` DATE,`AC_LIEU` VARCHAR(25),`AC_THEME` VARCHAR(10),`AC_MOTIF` VARCHAR(50),primary key(`AC_NUM`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 create table `COMPOSANT`(`CMP_CODE` VARCHAR(4) not null,`CMP_LIBELLE` VARCHAR(25),primary key(`CMP_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 create table `CONSTITUER`(`MED_DEPOTLEGAL` VARCHAR(10) not null,`CMP_CODE` VARCHAR(4) not null,`CST_QTE` FLOAT,primary key(`MED_DEPOTLEGAL`,`CMP_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 create table `DOSAGE`(`DOS_CODE` VARCHAR(10) not null,`DOS_QUANTITE` VARCHAR(10),`DOS_UNITE` VARCHAR(10),primary key(`DOS_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
@@ -156,7 +156,7 @@ insert into `PRATICIEN`(`PRA_NUM`,`PRA_NOM`,`PRA_PRENOM`,`PRA_ADRESSE`,`PRA_CP`,
 insert into `PRATICIEN`(`PRA_NUM`,`PRA_NOM`,`PRA_PRENOM`,`PRA_ADRESSE`,`PRA_CP`,`PRA_VILLE`,`PRA_COEFNOTORIETE`,`TYP_CODE`) values(86,'Laurent','Younès','34 r Demolombe','53000','MAYENNE',496.1,'MH');
 create table `PRESCRIRE`(`MED_DEPOTLEGAL` VARCHAR(10) not null,`TIN_CODE` VARCHAR(5) not null,`DOS_CODE` VARCHAR(10) not null,`PRE_POSOLOGIE` VARCHAR(40),primary key(`MED_DEPOTLEGAL`,`TIN_CODE`,`DOS_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 create table `PRESENTATION`(`PRE_CODE` VARCHAR(2) not null,`PRE_LIBELLE` VARCHAR(20),primary key(`PRE_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
-create table `RAPPORT_VISITE`(`VIS_MATRICULE` VARCHAR(10) not null,`RAP_NUM` INT not null,`PRA_NUM` SMALLINT not null,`RAP_DATE` DATETIME,`RAP_BILAN` VARCHAR(255),`RAP_MOTIF` VARCHAR(255),primary key(`VIS_MATRICULE`,`RAP_NUM`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
+create table `RAPPORT_VISITE`(`VIS_MATRICULE` VARCHAR(10) not null,`RAP_NUM` INT not null,`PRA_NUM` SMALLINT not null,`RAP_DATE` DATE,`RAP_BILAN` VARCHAR(255),`RAP_MOTIF` VARCHAR(255),primary key(`VIS_MATRICULE`,`RAP_NUM`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a131',3,23,'2002-4-18','Médecin curieux, à recontacer en décembre pour réunion','Actualisation annuelle');
 insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a131',7,41,'2003-3-23','RAS Changement de tel : 05 89 89 89 89','Rapport Annuel');
 insert into `RAPPORT_VISITE`(`VIS_MATRICULE`,`RAP_NUM`,`PRA_NUM`,`RAP_DATE`,`RAP_BILAN`,`RAP_MOTIF`) values('a17',4,4,'2003-5-21','Changement de direction, redéfinition de la politique médicamenteuse, recours au générique','Baisse activité');
@@ -242,7 +242,7 @@ insert into `Switchboard Items`(`SwitchboardID`,`ItemNumber`,`ItemText`,`Command
 insert into `Switchboard Items`(`SwitchboardID`,`ItemNumber`,`ItemText`,`Command`,`Argument`) values(1,3,'Praticiens',3,'F_PRATICIEN');
 insert into `Switchboard Items`(`SwitchboardID`,`ItemNumber`,`ItemText`,`Command`,`Argument`) values(1,4,'Medicaments',3,'F_MEDICAMENT');
 insert into `Switchboard Items`(`SwitchboardID`,`ItemNumber`,`ItemText`,`Command`,`Argument`) values(1,5,'Quitter',8,'quitter');
-create table `TRAVAILLER`(`VIS_MATRICULE` VARCHAR(10) not null,`JJMMAA` DATETIME not null,`REG_CODE` VARCHAR(2) not null,`TRA_ROLE` VARCHAR(11),primary key(`JJMMAA`,`VIS_MATRICULE`,`REG_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
+create table `TRAVAILLER`(`VIS_MATRICULE` VARCHAR(10) not null,`JJMMAA` DATE not null,`REG_CODE` VARCHAR(2) not null,`TRA_ROLE` VARCHAR(11),primary key(`JJMMAA`,`VIS_MATRICULE`,`REG_CODE`)) ENGINE=INNODB DEFAULT CHARSET=utf8;
 insert into `TRAVAILLER`(`VIS_MATRICULE`,`JJMMAA`,`REG_CODE`,`TRA_ROLE`) values('p49','1977-10-3','CE','Visiteur');
 insert into `TRAVAILLER`(`VIS_MATRICULE`,`JJMMAA`,`REG_CODE`,`TRA_ROLE`) values('k53','1983-3-23','CA','Visiteur');
 insert into `TRAVAILLER`(`VIS_MATRICULE`,`JJMMAA`,`REG_CODE`,`TRA_ROLE`) values('r24','1984-7-29','BN','Visiteur');

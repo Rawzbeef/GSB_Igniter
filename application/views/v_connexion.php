@@ -1,8 +1,7 @@
-<div style='margin-left:20%'>
+<div align="center">
 <?php
 
     if(!isset($_SESSION['login'])){
-        
         echo form_open('index.php/Connexion/login');
         $attributes = array('placeholder'=>'login');
         echo form_input('login', '', $attributes);
@@ -17,3 +16,5 @@
         echo('Vous etes connecté');
 
     }
+?>
+</div>
