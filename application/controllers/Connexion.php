@@ -35,4 +35,9 @@ class Connexion extends CI_Controller {
             }
         }
     }
+
+    public function logout(){
+        session_destroy();
+        $this->index();
+    }
 }
