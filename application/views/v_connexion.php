@@ -9,12 +9,9 @@
         echo form_password('mdp', '', $attributes);
         echo form_submit('valider', 'Valider');
         echo form_close();
-
     }
     else{
-
         echo('Vous etes connecté');
-
     }
 ?>
 </div>
