@@ -20,17 +20,19 @@ class Connexion extends CI_Controller {
 
 
     public function login() {
-        $this->load->database();
-        $this->load->model('bdd');
+        if(isset($_SESSION['login'])) {
+            $this->load->database();
+            $this->load->model('bdd');
 
-        $login = $this->bdd->validerConnexion($this->input->post('login'), $this->input->post('mdp'));
-        if(isset($login)) {
-        $this->index();
-        $_SESSION['login'] = $login;
-        }
-        else{
-            $this->index();
-            $data['error'] = 'Erreur de connexion';
+            $login = $this->bdd->validerConnexion($this->input->post('login'), $this->input->post('mdp'));
+            if(isset($login)) {
+                $this->index();
+                $_SESSION['login'] = $login;
+            }
+            else{
+                $this->index();
+                $data['error'] = 'Erreur de connexion';
+            }
         }
     }
 }
