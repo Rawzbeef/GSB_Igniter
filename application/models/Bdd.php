@@ -116,23 +116,51 @@ class Bdd extends CI_Model {
         public function getRapports($vId) {
             $query = $this->db->query("SELECT RAP_NUM FROM rapport_visite WHERE VIS_MATRICULE = '$vId'");
             foreach ($query->result() as $row) {
-                $rapports[] = $row->RAP_NUM;
+                $rapports[$row->RAP_NUM] = $row->RAP_NUM;
             }
             return $rapports;
         }
 
-        public function getInfoRapport($vId, $rapport) {
-            $query = $this->db->query("SELECT PRA_NOM, PRA_PRENOM, RAP_DATE, RAP_MOTIF, RAP_BILAN FROM rapport_visite RV, praticien, P WHERE P.PRA_NUM = RV.PRA_NUM AND VIS_MATRICULE = '$vId' AND RAP_NUM = '$rapport'");
+        public function getInfoRapport($vId, $rId) {
+            $query = $this->db->query("SELECT P.PRA_NUM, RAP_DATE, RAP_MOTIF, RAP_BILAN FROM rapport_visite RV, praticien P WHERE P.PRA_NUM = RV.PRA_NUM AND VIS_MATRICULE = '$vId' AND RAP_NUM = '$rId'");
             foreach ($query->result() as $row) {
-                $rapport[] = $row->PRA_NOM;
-                $rapport[] = $row->PRA_PRENOM;
+                $rapport[] = $row->PRA_NUM;
                 $rapport[] = $row->RAP_DATE;
                 $rapport[] = $row->RAP_MOTIF;
                 $rapport[] = $row->RAP_BILAN;
             }
-            return $rapports;
+            return $rapport;
         }
 
+        public function getEchantillons($vId, $rId) {
+            $query = $this->db->query("SELECT MED_NOMCOMMERCIAL, OFF_QTE, O.MED_DEPOTLEGAL FROM offrir O, medicament M WHERE M.MED_DEPOTLEGAL = O.MED_DEPOTLEGAL AND VIS_MATRICULE = '$vId' AND RAP_NUM = '$rId'");
+            $echantillons = array();
+            $i = 0;
+            foreach ($query->result() as $row) {
+                $echantillons[$i][] = $row->MED_NOMCOMMERCIAL;
+                $echantillons[$i][] = $row->OFF_QTE;
+                $echantillons[$i][] = $row->MED_DEPOTLEGAL;
+                $i++;
+            }
+            return $echantillons;
+        }
+
+        public function AjoutEchantillon($vId, $rId, $mId, $qte) {
+            $sql = "INSERT INTO offrir (VIS_MATRICULE, RAP_NUM, MED_DEPOTLEGAL, OFF_QTE) VALUES ('$vId', '$rId', '$mId', '$qte')";
+            $this->db->query($sql);
+        }
+
+
+
+        public function ajouterNewRapport($login, $num, $praticien, $date, $motif, $bilan) {
+            $req = "INSERT INTO rapport_visite (VIS_MATRICULE, RAP_NUM, PRA_NUM, RAP_DATE, RAP_BILAN, RAP_MOTIF) VALUES ('$login', '$num', '$praticien', '$date', '$motif', '$bilan')";
+            $this->db->query($req);
+        }
+
+        public function nbRapports($login) {
+            $query = $this->db->query("SELECT SUM(RAP_NUM) FROM rapport_visite WHERE VIS_MATRICULE = $login");
+            return $query;
+        }
 }
 
 
