@@ -1,4 +1,3 @@
-<div style='margin-left:20%'>
 <?php
     $attributes = array('class' => 'section');
     echo form_open('index.php/Praticien/rechercher', $attributes);

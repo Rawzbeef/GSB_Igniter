@@ -23,6 +23,9 @@ class Visiteur extends CI_Controller {
             $this->load->view('v_menu', $data);
             $this->load->view('v_visiteur', $data);
         }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
+        }
     }
     
     public function rechercher() {
@@ -30,6 +33,9 @@ class Visiteur extends CI_Controller {
             $this->index();
             $data['visiteur'] = $this->bdd->getInfoVisiteur($this->input->post('visiteur'));
             $this->load->view('v_chercher_visiteur', $data);
+        }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
         }
 
     }

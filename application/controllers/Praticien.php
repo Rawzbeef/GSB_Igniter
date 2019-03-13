@@ -23,6 +23,9 @@ class Praticien extends CI_Controller {
             $this->load->view('v_menu', $data);
             $this->load->view('v_praticien', $data);
         }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
+        }
     }
     
     public function rechercher() {
@@ -30,6 +33,9 @@ class Praticien extends CI_Controller {
             $this->index();
             $data['praticien'] = $this->bdd->getInfoPraticien($this->input->post('praticien'));
             $this->load->view('v_chercher_praticien', $data);
+        }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
         }
 
     }

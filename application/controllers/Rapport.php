@@ -18,6 +18,9 @@ class Rapport extends CI_Controller {
 
             $this->load->view('v_rapport', $data);
         }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
+        }
     }
 
     public function afficher() {
@@ -31,6 +34,9 @@ class Rapport extends CI_Controller {
 
             $data['rapports'] = $this->bdd->getInfoRapport($this->session->login, $this->input->post['rapport']);
             $this->load->view('v_afficher_rapport', $data);
+        }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
         }
     }
 }

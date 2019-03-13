@@ -23,6 +23,9 @@ class Medicament extends CI_Controller {
             $this->load->view('v_menu', $data);
             $this->load->view('v_medicament', $data);
         }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
+        }
     }
     
     public function rechercher() {
@@ -30,6 +33,9 @@ class Medicament extends CI_Controller {
             $this->index();
             $data['medicament'] = $this->bdd->getInfoMedicament($this->input->post('medicament'));
             $this->load->view('v_chercher_medicament', $data);
+        }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
         }
     }
 }
