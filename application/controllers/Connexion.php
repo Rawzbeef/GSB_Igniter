@@ -33,4 +33,9 @@ class Connexion extends CI_Controller {
             $data['error'] = 'Erreur de connexion';
         }
     }
+
+    public function logout(){
+        session_destroy();
+        $this->index();
+    }
 }

@@ -40,6 +40,9 @@
         else {
             echo "<li><a href='/GSB/index.php/Rapport/'>Rapports</a></li>";
         }
+        
+        echo "<li><a href='/GSB/index.php/Connexion/logout'>Déconnexion</a></li>";
+        
     ?></ul>
 </nav>
 <div style='margin-left:20%'>
