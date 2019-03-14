@@ -68,10 +68,53 @@ class Rapport extends CI_Controller {
 
     public function ajoutEch() {
         if(isset($this->session->login)) {
+            $this->load->database();
+            $this->load->model('bdd');
+
             $rId = $this->input->post('idr');
             $mId = $this->input->post('idm');
             $qte = $this->input->post('qte');
-            $this->bdd->AjoutEchantillon($this->session->login, $rId, $mId, $qte);
+            $this->bdd->ajoutEchantillon($this->session->login, $rId, $mId, $qte);
+            header('Location: http://127.0.0.1/GSB/index.php/Rapport'); 
+        }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
+        }
+    }
+
+
+    public function supprEch() {
+        if(isset($this->session->login)) {
+            $this->load->database();
+            $this->load->model('bdd');
+
+            $rId = $this->input->post('idr');
+            $mId = $this->input->post('idm');
+
+            //$this->bdd->supprEchantillon($this->session->login, $rId, $mId);
+            echo $rId."  aefefe  ".$mId;
+            //header('Location: http://127.0.0.1/GSB/index.php/Rapport'); 
+        }
+        else {
+            header('Location: http://127.0.0.1/GSB/'); 
+        }
+    }
+
+    public function modifier() {
+        if(isset($this->session->login)) {
+            $this->load->database();
+            $this->load->model('bdd');
+
+            $num = $this->input->post('idr');
+            $praticien = $this->input->post('praticien');
+            $date = $this->input->post('date');
+            $motif = $this->input->post('motif');
+            $bilan = $this->input->post('bilan');
+
+
+            $this->bdd->modifierNewRapport($this->session->login, $num, $praticien, $date, $motif, $bilan);
+
+            header('Location: http://127.0.0.1/GSB/index.php/Rapport'); 
         }
         else {
             header('Location: http://127.0.0.1/GSB/'); 
@@ -128,22 +171,17 @@ class Rapport extends CI_Controller {
 
             $login = $this->session->login;
             $num = $this->bdd->nbRapports($login) + 1 ;
-            $praticien = $this->input->post('login');
-            $date = $this->input->post('login');
-            $motif = $this->input->post('motif');
+            $praticien = $this->input->post('praticien');
+            $date = $this->input->post('date');
             $bilan = $this->input->post('bilan');
+            $motif = $this->input->post('motif');
             
-            $ajout = $this->bdd->ajouterNewRapport($login, $num, $praticien, $date, $motif, $bilan);
-            if(isset($ajout)) {
-                $this->load->view('v_rapport');
-            }
-            else{
-                $this->index();
-                $data['error'] = 'Erreur de l\'ajout';
-            }
+            $ajout = $this->bdd->ajouterNewRapport($login, $num, $praticien, $date, $bilan, $motif);
+            header('Location: http://127.0.0.1/GSB/Rapport');
         }
         else {
             header('Location: http://127.0.0.1/GSB/'); 
         }
+
     }
 }

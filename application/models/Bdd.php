@@ -145,21 +145,31 @@ class Bdd extends CI_Model {
             return $echantillons;
         }
 
-        public function AjoutEchantillon($vId, $rId, $mId, $qte) {
+        public function ajoutEchantillon($vId, $rId, $mId, $qte) {
             $sql = "INSERT INTO offrir (VIS_MATRICULE, RAP_NUM, MED_DEPOTLEGAL, OFF_QTE) VALUES ('$vId', '$rId', '$mId', '$qte')";
             $this->db->query($sql);
         }
 
+        public function supprEchantillon($login, $idr, $idm) {
+            $req = "DELETE FROM offrir WHERE VIS_MATRICULE = '$login' AND RAP_NUM = '$idr' AND MED_DEPOTLEGAL = '$idm'";
+            $this->db->query($req);
+        }
 
+        public function modifierNewRapport($login, $num, $praticien, $date, $motif, $bilan) {
+            $req = "UPDATE rapport_visite SET PRA_NUM = '$praticien', RAP_DATE = '$date', RAP_BILAN = '$bilan', RAP_MOTIF = '$motif' WHERE VIS_MATRICULE = '$login' AND RAP_NUM = '$num'";
+            $this->db->query($req);
+        }
 
         public function ajouterNewRapport($login, $num, $praticien, $date, $motif, $bilan) {
             $req = "INSERT INTO rapport_visite (VIS_MATRICULE, RAP_NUM, PRA_NUM, RAP_DATE, RAP_BILAN, RAP_MOTIF) VALUES ('$login', '$num', '$praticien', '$date', '$motif', '$bilan')";
             $this->db->query($req);
+
         }
 
         public function nbRapports($login) {
-            $query = $this->db->query("SELECT SUM(RAP_NUM) FROM rapport_visite WHERE VIS_MATRICULE = $login");
-            return $query;
+            $query = $this->db->query("SELECT COUNT(RAP_NUM) AS nbRapport FROM rapport_visite WHERE VIS_MATRICULE = '$login'");
+            $row = $query->row();
+            return $row->nbRapport;
         }
 }
 

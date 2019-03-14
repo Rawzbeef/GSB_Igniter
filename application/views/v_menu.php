@@ -35,7 +35,7 @@
 
         //Rapports
         if($titre == "Rapport") {
-            echo "<li><a class='active'>Rapports</a></li>";
+            echo "<li><a class='active' href='/GSB/index.php/Rapport/'>Rapports</a></li>";
         }
         else {
             echo "<li><a href='/GSB/index.php/Rapport/'>Rapports</a></li>";
