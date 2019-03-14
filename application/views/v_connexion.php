@@ -2,7 +2,7 @@
 <?php
 
     if(isset($this->session->login)){
-       echo('Vous etes connecté'.$this->session->login);
+       echo heading('Vous etes connecté', 3);
     }
     else{
         echo form_open('index.php/Connexion/login');
